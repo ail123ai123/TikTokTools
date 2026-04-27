@@ -10,7 +10,7 @@
         h1 { color: #fe2c55; }
         .timer { font-size: 24px; font-weight: bold; color: #333; margin: 20px 0; }
         .btn { display: none; background-color: #fe2c55; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-size: 18px; font-weight: bold; }
-        .ad-space { margin: 20px 0; min-height: 250px; background: #fafafa; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; }
+        .ad-space { margin: 20px 0; min-height: 200px; display: flex; align-items: center; justify-content: center; }
     </style>
 </head>
 <body>
@@ -28,22 +28,17 @@
     
     <a href="#" id="downloadBtn" class="btn">اضغط هنا للتحميل الآن</a>
 
-    <p style="margin-top: 20px; color: #666; font-size: 12px;">تأكد من تحديث الصفحة إذا لم يظهر الزر.</p>
+    <p id="errorMsg" style="display:none; color: gray; margin-top: 20px;">لم يتم العثور على رابط، يرجى العودة للصفحة الرئيسية.</p>
 </div>
 
 <script>
     let timeLeft = 15;
     const timerElement = document.getElementById('timer');
     const downloadBtn = document.getElementById('downloadBtn');
+    const errorMsg = document.getElementById('errorMsg');
 
-    // استرجاع رابط الفيديو من الذاكرة
+    // استلام الرابط من الذاكرة
     const videoUrl = localStorage.getItem('videoUrl');
-    if (videoUrl) {
-        downloadBtn.href = videoUrl;
-    } else {
-        downloadBtn.href = 'index.html';
-        downloadBtn.innerText = 'رجوع للملف الرئيسي';
-    }
 
     const countdown = setInterval(() => {
         timeLeft--;
@@ -51,7 +46,17 @@
         if (timeLeft <= 0) {
             clearInterval(countdown);
             timerElement.style.display = 'none';
-            downloadBtn.style.display = 'inline-block';
+
+            if (videoUrl && videoUrl.trim() !== "") {
+                downloadBtn.href = videoUrl;
+                downloadBtn.style.display = 'inline-block';
+            } else {
+                errorMsg.style.display = 'block';
+                downloadBtn.innerText = "رجوع للملف الرئيسي";
+                downloadBtn.href = "index.html";
+                downloadBtn.style.display = 'inline-block';
+                downloadBtn.style.backgroundColor = "#666";
+            }
         }
     }, 1000);
 </script>
