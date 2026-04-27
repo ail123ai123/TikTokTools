@@ -8,26 +8,34 @@
         body { font-family: sans-serif; text-align: center; background-color: #f0f2f5; padding: 20px; }
         .container { max-width: 450px; margin: 40px auto; background: white; padding: 30px; border-radius: 15px; }
         .timer { font-size: 50px; color: #fe2c55; font-weight: bold; margin: 20px 0; }
-        .btn { display: none; background-color: #25d366; color: white; padding: 18px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 20px; }
+        .btn { display: none; background-color: #25d366; color: white; padding: 18px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 19px; line-height: 1.5; }
         .ad-space { min-height: 250px; margin-bottom: 20px; }
+        .hint { color: #666; font-size: 14px; margin-top: 10px; display: none; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h3>جاري تجهيز الفيديو...</h3>
+        <h3>جاري تحضير سيرفر التحميل...</h3>
+        
         <div class="ad-space">
             <script async="async" data-cfasync="false" src="https://pl29272676.profitablecpmratenetwork.com/ae02281ed679eccd447fa026ddbe0ffb/invoke.js"></script>
             <div id="container-ae02281ed679eccd447fa026ddbe0ffb"></div>
         </div>
+
         <div id="counter" class="timer">15</div>
-        <a href="#" id="dlLink" class="btn">اضغط للتحميل المباشر</a>
+        
+        <a href="https://snaptik.app" id="dlLink" target="_blank" class="btn">
+            انقر هنا ثم الصق الرابط للتحميل
+        </a>
+        
+        <p id="hintText" class="hint">ملاحظة: سيفتح موقع التحميل، فقط اضغط "Paste" ثم "Download".</p>
     </div>
 
     <script>
         let s = 15;
         const countDiv = document.getElementById('counter');
         const linkBtn = document.getElementById('dlLink');
-        const video = localStorage.getItem('TIKTOK_URL');
+        const hint = document.getElementById('hintText');
 
         const timer = setInterval(() => {
             s--;
@@ -36,15 +44,7 @@
                 clearInterval(timer);
                 countDiv.style.display = 'none';
                 linkBtn.style.display = 'block';
-                
-                if (video) {
-                    linkBtn.onclick = function(e) {
-                        e.preventDefault();
-                        // توجيه لخدمة التحميل التي تمنع فتح التطبيق
-                        const final = "https://snaptik.app/abc?url=" + encodeURIComponent(video);
-                        window.location.href = final;
-                    };
-                }
+                hint.style.display = 'block';
             }
         }, 1000);
     </script>
