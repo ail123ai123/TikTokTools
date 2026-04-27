@@ -3,50 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جاري التحميل...</title>
+    <title>جاري التحضير...</title>
     <style>
         body { font-family: sans-serif; text-align: center; background-color: #f0f2f5; padding: 20px; }
-        .container { max-width: 500px; margin: 40px auto; background: white; padding: 30px; border-radius: 15px; }
-        .timer { font-size: 40px; color: #fe2c55; font-weight: bold; margin: 20px 0; }
-        .btn { display: none; background-color: #25d366; color: white; padding: 15px; text-decoration: none; border-radius: 8px; font-weight: bold; display: block; margin-top: 20px; }
-        .ad-space { min-height: 250px; margin-bottom: 20px; }
+        .container { max-width: 450px; margin: 40px auto; background: white; padding: 30px; border-radius: 15px; }
+        .timer { font-size: 50px; color: #fe2c55; font-weight: bold; margin: 20px 0; }
+        .btn { display: none; background-color: #25d366; color: white; padding: 18px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 20px; margin-top: 20px; }
+        .ad-space { min-height: 250px; margin-bottom: 20px; border: 1px solid #eee; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h3>جاري تجهيز الرابط المباشر...</h3>
+        <h3>جاري تجهيز الرابط...</h3>
 
         <div class="ad-space">
             <script async="async" data-cfasync="false" src="https://pl29272676.profitablecpmratenetwork.com/ae02281ed679eccd447fa026ddbe0ffb/invoke.js"></script>
             <div id="container-ae02281ed679eccd447fa026ddbe0ffb"></div>
         </div>
 
-        <div id="timer" class="timer">15</div>
-        <a href="#" id="finalBtn" class="btn" style="display:none;">تنزيل الفيديو الآن</a>
+        <div id="timerDisplay" class="timer">15</div>
+        <a href="#" id="dlBtn" class="btn">اضغط هنا للتحميل الآن</a>
     </div>
 
     <script>
-        let count = 15;
-        const timerDiv = document.getElementById('timer');
-        const btn = document.getElementById('finalBtn');
+        let timeLeft = 15;
+        const timerText = document.getElementById('timerDisplay');
+        const finalBtn = document.getElementById('dlBtn');
+        const videoUrl = localStorage.getItem('v_url');
 
-        // فك تشفير الرابط
-        const data = localStorage.getItem('v_data');
-        const realUrl = data ? atob(data) : null;
-
-        const interval = setInterval(() => {
-            count--;
-            timerDiv.innerText = count;
-            if (count <= 0) {
-                clearInterval(interval);
-                timerDiv.style.display = 'none';
-                if (realUrl) {
-                    btn.style.display = 'block';
-                    // التوجيه لخدمة التحميل الخارجية التي تمنع فتح التطبيق
-                    btn.onclick = function(e) {
+        // تشغيل العداد فوراً
+        const countdown = setInterval(function() {
+            timeLeft--;
+            timerText.innerText = timeLeft;
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                timerText.style.display = 'none';
+                finalBtn.style.display = 'block';
+                
+                if (videoUrl) {
+                    finalBtn.onclick = function(e) {
                         e.preventDefault();
-                        window.location.href = "https://snaptik.app/abc?url=" + encodeURIComponent(realUrl);
+                        // توجيه لخدمة التحميل اللي تكسر حماية تيك توك
+                        window.location.href = "https://snaptik.app/abc?url=" + encodeURIComponent(videoUrl);
                     };
+                } else {
+                    finalBtn.innerText = "خطأ: ارجع وضع الرابط";
+                    finalBtn.href = "index.html";
                 }
             }
         }, 1000);
