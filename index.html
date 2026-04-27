@@ -3,32 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محمل فيديوهات تيك توك</title>
+    <title>تحميل تيك توك</title>
     <style>
         body { font-family: sans-serif; text-align: center; background-color: #f0f2f5; padding: 20px; }
-        .container { max-width: 500px; margin: 50px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .container { max-width: 450px; margin: 50px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         h1 { color: #fe2c55; }
-        input { width: 90%; padding: 12px; margin: 20px 0; border: 2px solid #ddd; border-radius: 8px; }
-        .btn { background-color: #fe2c55; color: white; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; }
+        input { width: 90%; padding: 12px; margin: 20px 0; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; }
+        .btn { background-color: #fe2c55; color: white; padding: 15px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; font-size: 18px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>تحميل من تيك توك</h1>
-        <input type="text" id="videoLink" placeholder="ضع الرابط هنا...">
-        <button class="btn" onclick="sendToDownload()">بدء المعالجة</button>
+        <h1>تحميل تيك توك</h1>
+        <input type="text" id="videoLink" placeholder="الصق رابط الفيديو هنا...">
+        <button class="btn" onclick="go()">بدء التحميل</button>
     </div>
 
     <script>
-        function sendToDownload() {
+        function go() {
             const link = document.getElementById('videoLink').value;
-            if (link.includes("tiktok.com")) {
-                // تشفير الرابط لإخفائه عن نظام الأندرويد
-                const encrypted = btoa(link);
-                localStorage.setItem('v_data', encrypted);
+            if (link.trim() !== "") {
+                localStorage.setItem('v_url', link); // حفظ الرابط ببساطة
                 window.location.href = 'download.html';
             } else {
-                alert("الرجاء وضع رابط تيك توك صحيح");
+                alert("ضع الرابط أولاً!");
             }
         }
     </script>
