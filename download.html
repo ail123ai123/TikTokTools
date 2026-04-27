@@ -2,9 +2,9 @@
     let timeLeft = 15;
     const timerElement = document.getElementById('timer');
     const downloadBtn = document.getElementById('downloadBtn');
-    const instructions = document.getElementById('instructions');
 
-    const rawUrl = localStorage.getItem('videoUrl');
+    // جلب الرابط من الذاكرة
+    let rawUrl = localStorage.getItem('videoUrl');
 
     const countdown = setInterval(() => {
         timeLeft--;
@@ -14,13 +14,16 @@
             timerElement.style.display = 'none';
 
             if (rawUrl) {
-                // هذا الرابط الوسيط يمنع فتح تطبيق تيك توك ويحولك لصفحة التحميل مباشرة
-                const finalDownloadLink = "https://snaptik.app/abc?url=" + encodeURIComponent(rawUrl);
-                
-                downloadBtn.href = finalDownloadLink;
                 downloadBtn.style.display = 'block';
-                downloadBtn.innerText = "جاهز! اضغط للتحميل الآن";
-                instructions.style.display = 'block';
+                downloadBtn.innerText = "تحميل الفيديو الآن";
+                
+                // هذه الوظيفة تمنع التوجيه للتطبيق وتفتح موقع التحميل مباشرة
+                downloadBtn.onclick = function(e) {
+                    e.preventDefault(); 
+                    // تحويل الرابط لخدمة التحميل مباشرة
+                    const downloadService = "https://snaptik.app/abc?url=" + encodeURIComponent(rawUrl);
+                    window.open(downloadService, '_blank'); 
+                };
             } else {
                 downloadBtn.innerText = "خطأ: ارجع وضع الرابط";
                 downloadBtn.href = "index.html";
