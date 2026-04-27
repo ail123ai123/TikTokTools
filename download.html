@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جاري تجهيز الرابط - تيك توك</title>
+    <title>جاري تحضير التحميل...</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f9; margin: 0; padding: 20px; }
-        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        h1 { color: #fe2c55; }
-        .timer { font-size: 24px; font-weight: bold; color: #333; margin: 20px 0; }
-        .btn { display: none; background-color: #fe2c55; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-size: 18px; font-weight: bold; }
-        .ad-space { margin: 20px 0; min-height: 200px; display: flex; align-items: center; justify-content: center; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background-color: #f0f2f5; margin: 0; padding: 20px; }
+        .container { max-width: 500px; margin: 40px auto; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h1 { color: #333; font-size: 22px; }
+        .timer { font-size: 40px; font-weight: bold; color: #fe2c55; margin: 20px 0; }
+        .btn { display: none; background-color: #25d366; color: white; padding: 18px 30px; text-decoration: none; border-radius: 12px; font-size: 20px; font-weight: bold; width: 100%; box-sizing: border-box; }
+        .ad-space { margin: 20px 0; min-height: 250px; background: #fff; border-radius: 10px; overflow: hidden; }
+        .instructions { font-size: 14px; color: #666; margin-top: 15px; display: none; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>جاري فحص الرابط...</h1>
-    <p>يرجى الانتظار قليلاً، سيظهر زر التحميل بعد انتهاء العد.</p>
-
+    <h1>جاري تجهيز ملف التحميل...</h1>
+    
     <div class="ad-space">
         <script async="async" data-cfasync="false" src="https://pl29272676.profitablecpmratenetwork.com/ae02281ed679eccd447fa026ddbe0ffb/invoke.js"></script>
         <div id="container-ae02281ed679eccd447fa026ddbe0ffb"></div>
@@ -26,19 +26,18 @@
 
     <div class="timer" id="timer">15</div>
     
-    <a href="#" id="downloadBtn" class="btn">اضغط هنا للتحميل الآن</a>
-
-    <p id="errorMsg" style="display:none; color: gray; margin-top: 20px;">لم يتم العثور على رابط، يرجى العودة للصفحة الرئيسية.</p>
+    <a href="#" id="downloadBtn" class="btn">اضغط هنا لبدء التنزيل المباشر</a>
+    
+    <p class="instructions" id="instructions">إذا لم يبدأ التحميل تلقائياً، اضغط مطولاً على الزر واختر "تنزيل الرابط".</p>
 </div>
 
 <script>
     let timeLeft = 15;
     const timerElement = document.getElementById('timer');
     const downloadBtn = document.getElementById('downloadBtn');
-    const errorMsg = document.getElementById('errorMsg');
+    const instructions = document.getElementById('instructions');
 
-    // استلام الرابط من الذاكرة
-    const videoUrl = localStorage.getItem('videoUrl');
+    const rawUrl = localStorage.getItem('videoUrl');
 
     const countdown = setInterval(() => {
         timeLeft--;
@@ -47,14 +46,16 @@
             clearInterval(countdown);
             timerElement.style.display = 'none';
 
-            if (videoUrl && videoUrl.trim() !== "") {
-                downloadBtn.href = videoUrl;
-                downloadBtn.style.display = 'inline-block';
+            if (rawUrl) {
+                // استخدام وسيط لإجبار التحميل (SSSTik API style)
+                const downloadLink = "https://www.ssstik.io/abc?url=" + encodeURIComponent(rawUrl);
+                downloadBtn.href = downloadLink;
+                downloadBtn.style.display = 'block';
+                instructions.style.display = 'block';
             } else {
-                errorMsg.style.display = 'block';
-                downloadBtn.innerText = "رجوع للملف الرئيسي";
+                downloadBtn.innerText = "خطأ: ارجع وضع الرابط";
                 downloadBtn.href = "index.html";
-                downloadBtn.style.display = 'inline-block';
+                downloadBtn.style.display = 'block';
                 downloadBtn.style.backgroundColor = "#666";
             }
         }
