@@ -1,35 +1,55 @@
-<script>
-    let timeLeft = 15;
-    const timerElement = document.getElementById('timer');
-    const downloadBtn = document.getElementById('downloadBtn');
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جاري التحميل...</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; background-color: #f0f2f5; padding: 20px; }
+        .container { max-width: 500px; margin: 40px auto; background: white; padding: 30px; border-radius: 15px; }
+        .timer { font-size: 40px; color: #fe2c55; font-weight: bold; margin: 20px 0; }
+        .btn { display: none; background-color: #25d366; color: white; padding: 15px; text-decoration: none; border-radius: 8px; font-weight: bold; display: block; margin-top: 20px; }
+        .ad-space { min-height: 250px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>جاري تجهيز الرابط المباشر...</h3>
 
-    // جلب الرابط من الذاكرة
-    let rawUrl = localStorage.getItem('videoUrl');
+        <div class="ad-space">
+            <script async="async" data-cfasync="false" src="https://pl29272676.profitablecpmratenetwork.com/ae02281ed679eccd447fa026ddbe0ffb/invoke.js"></script>
+            <div id="container-ae02281ed679eccd447fa026ddbe0ffb"></div>
+        </div>
 
-    const countdown = setInterval(() => {
-        timeLeft--;
-        timerElement.textContent = timeLeft;
-        if (timeLeft <= 0) {
-            clearInterval(countdown);
-            timerElement.style.display = 'none';
+        <div id="timer" class="timer">15</div>
+        <a href="#" id="finalBtn" class="btn" style="display:none;">تنزيل الفيديو الآن</a>
+    </div>
 
-            if (rawUrl) {
-                downloadBtn.style.display = 'block';
-                downloadBtn.innerText = "تحميل الفيديو الآن";
-                
-                // هذه الوظيفة تمنع التوجيه للتطبيق وتفتح موقع التحميل مباشرة
-                downloadBtn.onclick = function(e) {
-                    e.preventDefault(); 
-                    // تحويل الرابط لخدمة التحميل مباشرة
-                    const downloadService = "https://snaptik.app/abc?url=" + encodeURIComponent(rawUrl);
-                    window.open(downloadService, '_blank'); 
-                };
-            } else {
-                downloadBtn.innerText = "خطأ: ارجع وضع الرابط";
-                downloadBtn.href = "index.html";
-                downloadBtn.style.display = 'block';
-                downloadBtn.style.backgroundColor = "#666";
+    <script>
+        let count = 15;
+        const timerDiv = document.getElementById('timer');
+        const btn = document.getElementById('finalBtn');
+
+        // فك تشفير الرابط
+        const data = localStorage.getItem('v_data');
+        const realUrl = data ? atob(data) : null;
+
+        const interval = setInterval(() => {
+            count--;
+            timerDiv.innerText = count;
+            if (count <= 0) {
+                clearInterval(interval);
+                timerDiv.style.display = 'none';
+                if (realUrl) {
+                    btn.style.display = 'block';
+                    // التوجيه لخدمة التحميل الخارجية التي تمنع فتح التطبيق
+                    btn.onclick = function(e) {
+                        e.preventDefault();
+                        window.location.href = "https://snaptik.app/abc?url=" + encodeURIComponent(realUrl);
+                    };
+                }
             }
-        }
-    }, 1000);
-</script>
+        }, 1000);
+    </script>
+</body>
+</html>
