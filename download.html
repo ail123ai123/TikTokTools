@@ -3,41 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جاري تحضير الفيديو...</title>
+    <title>جاري تحضير الفيديو | TikTok Tools</title>
     <style>
-        body { background-color: #010101; color: white; font-family: 'Arial', sans-serif; text-align: center; padding: 20px; }
-        .ad-box { width: 300px; height: 250px; background: #1a1a1a; border: 1px dashed #555; margin: 20px auto; display: flex; align-items: center; justify-content: center; color: #888; }
-        #countdown { font-size: 60px; color: #fe2c55; font-weight: bold; }
-        .btn-ready { display: none; background-color: #25d366; color: white; padding: 15px 40px; border-radius: 25px; text-decoration: none; font-size: 20px; font-weight: bold; }
+        body { 
+            background-color: #010101; 
+            color: white; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            text-align: center; 
+            padding: 20px; 
+            margin: 0;
+        }
+        .container { max-width: 600px; margin: auto; }
+        .logo { color: #fe2c55; font-size: 28px; font-weight: bold; margin-bottom: 20px; }
+        
+        /* مربعات الإعلانات - مناجم الذهب */
+        .ad-box { 
+            width: 100%; 
+            min-height: 250px; 
+            background: #121212; 
+            border: 1px dashed #333; 
+            margin: 20px 0; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: #555;
+            border-radius: 10px;
+        }
+
+        #status-area { margin: 30px 0; }
+        h2 { font-size: 20px; color: #ccc; }
+        
+        /* العداد */
+        #countdown { 
+            font-size: 70px; 
+            color: #fe2c55; 
+            font-weight: bold; 
+            text-shadow: 0 0 20px rgba(254, 44, 85, 0.5);
+            margin: 10px 0;
+        }
+
+        /* زر التحميل */
+        .btn-download { 
+            display: none; 
+            background: linear-gradient(45deg, #fe2c55, #25d366); 
+            color: white; 
+            padding: 18px 50px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-size: 22px; 
+            font-weight: bold; 
+            box-shadow: 0 5px 20px rgba(254, 44, 85, 0.4);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
     </style>
 </head>
 <body>
-    <div class="ad-box">مكان الإعلان 1 (أرباحك هنا)</div>
-    
-    <div id="status">
-        <h3>جاري تجهيز رابط التحميل الحقيقي...</h3>
-        <div id="countdown">30</div>
+
+    <div class="container">
+        <div class="logo">TikTok Tools</div>
+
+        <div class="ad-box">
+            <span>إعلان (سيظهر هنا بعد وضع الكود)</span>
+        </div>
+
+        <div id="status-area">
+            <h2 id="main-msg">جاري معالجة الفيديو بجودة عالية...</h2>
+            <p id="sub-msg">يرجى الانتظار، سيجهز الرابط خلال ثوانٍ</p>
+            <div id="countdown">30</div>
+        </div>
+
+        <div class="ad-box">
+            <span>إعلان (سيظهر هنا بعد وضع الكود)</span>
+        </div>
+
+        <a href="#" id="finalBtn" class="btn-download" target="_blank">اضغط هنا للتحميل المباشر</a>
     </div>
 
-    <div class="ad-box">مكان الإعلان 2 (أرباحك هنا)</div>
-
-    <a href="#" id="finalBtn" class="btn-ready">اضغط هنا للتحميل النهائي</a>
-
     <script>
+        // جلب رابط الفيديو من الصفحة السابقة
         const urlParams = new URLSearchParams(window.location.search);
-        const videoUrl = urlParams.get('url');
-        let timeLeft = 30;
+        let videoUrl = urlParams.get('url');
+        
+        let timeLeft = 30; // عدد الثواني
+        const countdownDisplay = document.getElementById('countdown');
+        const finalBtn = document.getElementById('finalBtn');
+        const mainMsg = document.getElementById('main-msg');
+        const subMsg = document.getElementById('sub-msg');
 
-        let interval = setInterval(() => {
+        let timer = setInterval(() => {
             timeLeft--;
-            document.getElementById('countdown').innerText = timeLeft;
+            countdownDisplay.innerText = timeLeft;
+
             if (timeLeft <= 0) {
-                clearInterval(interval);
-                document.getElementById('status').innerHTML = "<h3>الفيديو جاهز الآن!</h3>";
-                const btn = document.getElementById('finalBtn');
-                btn.style.display = "inline-block";
-                // الربط بمحرك تحميل خارجي لضمان جلب الفيديو بدون علامة مائية
-                btn.href = "https://snaptik.app/abc?url=" + encodeURIComponent(videoUrl);
+                clearInterval(timer);
+                countdownDisplay.style.display = "none";
+                mainMsg.innerText = "تم تجهيز الفيديو بنجاح!";
+                subMsg.innerText = "يمكنك التحميل الآن عبر الزر أدناه";
+                
+                finalBtn.style.display = "inline-block";
+                
+                // الرابط الجديد المحسن للتحميل
+                if (videoUrl) {
+                    finalBtn.href = "https://snaptik.app/abc?url=" + encodeURIComponent(videoUrl);
+                } else {
+                    finalBtn.href = "https://snaptik.app/";
+                }
             }
         }, 1000);
     </script>
