@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جاري تحضير الفيديو | TikTok Tools</title>
+    <title>جاري تجهيز التحميل | TikTok Tools</title>
     <style>
         body { background-color: #010101; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
         .container { max-width: 500px; margin: auto; }
         .ad-box { width: 100%; height: 250px; background: #121212; border: 1px dashed #444; margin: 20px 0; display: flex; align-items: center; justify-content: center; color: #666; border-radius: 10px; }
         #countdown { font-size: 80px; color: #fe2c55; font-weight: bold; margin: 20px 0; }
         .btn-download { display: none; background: #25d366; color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-size: 22px; font-weight: bold; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
-        h2 { color: #fe2c55; }
+        h2 { color: #fe2c55; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -20,20 +20,19 @@
         
         <div class="ad-box">إعلان (مكان أرباحك 1)</div>
 
-        <div id="loading-part">
-            <p>جاري فحص الرابط وتحسين الجودة...</p>
-            <div id="countdown">30</div>
-        </div>
+        <div id="status-box">
+            <p>جاري تحضير سيرفر التحميل المباشر...</p>
+            <div id="countdown">15</div> </div>
 
         <div class="ad-box">إعلان (مكان أرباحك 2)</div>
 
-        <a href="#" id="finalBtn" class="btn-download">اضغط هنا للتحميل المباشر</a>
+        <a href="#" id="finalBtn" class="btn-download">اضغط هنا لتحميل الفيديو</a>
     </div>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         let videoUrl = urlParams.get('url');
-        let timeLeft = 30; // العداد
+        let timeLeft = 15; 
 
         let timer = setInterval(() => {
             timeLeft--;
@@ -41,16 +40,15 @@
 
             if (timeLeft <= 0) {
                 clearInterval(timer);
-                document.getElementById('loading-part').innerHTML = "<h3>تم تجهيز الفيديو!</h3>";
+                document.getElementById('status-box').innerHTML = "<h3>تم تجهيز السيرفر!</h3>";
                 const btn = document.getElementById('finalBtn');
                 btn.style.display = "inline-block";
                 
-                // التعديل السحري: نفتح الموقع الرئيسي للتحميل ونخلي المستخدم يلصق الرابط هناك لضمان 100% عمل
-                // أو نوجهه لصفحة البحث المباشرة
+                // استخدمنا موقع ssstik لأنه أسرع وأكثر استقراراً في الروابط المباشرة
                 if (videoUrl) {
-                    btn.href = "https://snaptik.app/ar"; 
-                    // لإبهار الزوار، ننسخ الرابط لهم تلقائياً (اختياري)
-                    alert("تم تجهيز الرابط! اضغط موافق ثم الصق الرابط في الصفحة التالية للتحميل");
+                    btn.href = "https://ssstik.io/ar"; 
+                } else {
+                    btn.href = "https://ssstik.io/ar";
                 }
             }
         }, 1000);
