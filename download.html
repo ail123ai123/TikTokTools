@@ -3,55 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جاري تجهيز التحميل | TikTok Tools</title>
+    <title>جاري تجهيز الرابط - تيك توك</title>
     <style>
-        body { background-color: #010101; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
-        .container { max-width: 500px; margin: auto; }
-        .ad-box { width: 100%; height: 250px; background: #121212; border: 1px dashed #444; margin: 20px 0; display: flex; align-items: center; justify-content: center; color: #666; border-radius: 10px; }
-        #countdown { font-size: 80px; color: #fe2c55; font-weight: bold; margin: 20px 0; }
-        .btn-download { display: none; background: #25d366; color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-size: 22px; font-weight: bold; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
-        h2 { color: #fe2c55; margin-top: 20px; }
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f9; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { color: #fe2c55; }
+        .timer { font-size: 24px; font-weight: bold; color: #333; margin: 20px 0; }
+        .btn { display: none; background-color: #fe2c55; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-size: 18px; font-weight: bold; }
+        .ad-space { margin: 20px 0; min-height: 250px; background: #fafafa; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h2>TikTok Tools</h2>
-        
-        <div class="ad-box">إعلان (مكان أرباحك 1)</div>
+<div class="container">
+    <h1>جاري فحص الرابط...</h1>
+    <p>يرجى الانتظار قليلاً، سيظهر زر التحميل بعد انتهاء العد.</p>
 
-        <div id="status-box">
-            <p>جاري تحضير سيرفر التحميل المباشر...</p>
-            <div id="countdown">15</div> </div>
-
-        <div class="ad-box">إعلان (مكان أرباحك 2)</div>
-
-        <a href="#" id="finalBtn" class="btn-download">اضغط هنا لتحميل الفيديو</a>
+    <div class="ad-space">
+        <script async="async" data-cfasync="false" src="https://pl29272676.profitablecpmratenetwork.com/ae02281ed679eccd447fa026ddbe0ffb/invoke.js"></script>
+        <div id="container-ae02281ed679eccd447fa026ddbe0ffb"></div>
     </div>
 
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        let videoUrl = urlParams.get('url');
-        let timeLeft = 15; 
+    <div class="timer" id="timer">15</div>
+    
+    <a href="#" id="downloadBtn" class="btn">اضغط هنا للتحميل الآن</a>
 
-        let timer = setInterval(() => {
-            timeLeft--;
-            document.getElementById('countdown').innerText = timeLeft;
+    <p style="margin-top: 20px; color: #666; font-size: 12px;">تأكد من تحديث الصفحة إذا لم يظهر الزر.</p>
+</div>
 
-            if (timeLeft <= 0) {
-                clearInterval(timer);
-                document.getElementById('status-box').innerHTML = "<h3>تم تجهيز السيرفر!</h3>";
-                const btn = document.getElementById('finalBtn');
-                btn.style.display = "inline-block";
-                
-                // استخدمنا موقع ssstik لأنه أسرع وأكثر استقراراً في الروابط المباشرة
-                if (videoUrl) {
-                    btn.href = "https://ssstik.io/ar"; 
-                } else {
-                    btn.href = "https://ssstik.io/ar";
-                }
-            }
-        }, 1000);
-    </script>
+<script>
+    let timeLeft = 15;
+    const timerElement = document.getElementById('timer');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    // استرجاع رابط الفيديو من الذاكرة
+    const videoUrl = localStorage.getItem('videoUrl');
+    if (videoUrl) {
+        downloadBtn.href = videoUrl;
+    } else {
+        downloadBtn.href = 'index.html';
+        downloadBtn.innerText = 'رجوع للملف الرئيسي';
+    }
+
+    const countdown = setInterval(() => {
+        timeLeft--;
+        timerElement.textContent = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            timerElement.style.display = 'none';
+            downloadBtn.style.display = 'inline-block';
+        }
+    }, 1000);
+</script>
+
 </body>
 </html>
