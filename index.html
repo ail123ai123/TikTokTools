@@ -2,35 +2,27 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>تيك توك تولز | TikTok Tools</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Tools - تحميل سريع</title>
     <style>
-        body { background-color: #010101; color: white; font-family: sans-serif; text-align: center; }
-        .hero { padding: 50px; background: linear-gradient(45deg, #fe2c55, #25f4ee); }
-        .tool-box { background: #121212; border-radius: 20px; padding: 30px; margin: 20px auto; max-width: 500px; border: 2px solid #25f4ee; }
-        input { width: 80%; padding: 12px; border-radius: 25px; border: none; margin-bottom: 15px; }
-        .btn { background: #fe2c55; color: white; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: bold; cursor: pointer; border: none; }
+        body { background-color: #010101; color: white; font-family: 'Arial', sans-serif; text-align: center; padding: 50px 20px; }
+        .logo { color: #fe2c55; font-size: 40px; font-weight: bold; margin-bottom: 30px; }
+        input { width: 90%; max-width: 500px; padding: 15px; border-radius: 25px; border: 2px solid #fe2c55; background: #121212; color: white; font-size: 16px; outline: none; }
+        button { background-color: #fe2c55; color: white; border: none; padding: 15px 40px; border-radius: 25px; font-size: 18px; font-weight: bold; margin-top: 20px; cursor: pointer; transition: 0.3s; }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>منصة صناع محتوى تيك توك</h1>
-        <p>حمل، فلتر، واربح المشاهدات</p>
-    </div>
-    <div class="tool-box">
-        <h3>أدخل رابط الفيديو</h3>
-        <input type="text" id="videoLink" placeholder="ضع رابط الفيديو هنا...">
-        <br>
-        <button class="btn" onclick="goToWait(30)">فلترة وتحميل (30 ثانية)</button>
-        <button class="btn" onclick="goToWait(60)" style="background:#25f4ee; color:black; margin-top:10px;">فلترة وتحميل (60 ثانية)</button>
-    </div>
+    <div class="logo">TikTok Tools</div>
+    <h2>حمل فيديوهات تيك توك بدون علامة مائية</h2>
+    <input type="text" id="videoUrl" placeholder="ضع رابط الفيديو هنا...">
+    <br>
+    <button onclick="goToDownload()">تحميل الآن</button>
     <script>
-        function goToWait(seconds) {
-            let link = document.getElementById('videoLink').value;
-            if(link != "") {
-                window.location.href = "download.html?time=" + seconds;
-            } else {
-                alert("يرجى وضع رابط الفيديو أولاً!");
-            }
+        function goToDownload() {
+            let url = document.getElementById('videoUrl').value;
+            if(url.includes('tiktok.com')) {
+                window.location.href = "download.html?url=" + encodeURIComponent(url);
+            } else { alert("يرجى وضع رابط تيك توك صحيح"); }
         }
     </script>
 </body>
