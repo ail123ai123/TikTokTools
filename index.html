@@ -7,15 +7,17 @@
     <style>
         body { font-family: sans-serif; text-align: center; background-color: #f0f2f5; padding: 20px; }
         .container { max-width: 450px; margin: 50px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        input { width: 90%; padding: 12px; margin: 20px 0; border: 2px solid #fe2c55; border-radius: 8px; }
-        .btn { background-color: #fe2c55; color: white; padding: 15px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; }
+        h1 { color: #fe2c55; }
+        input { width: 90%; padding: 12px; margin: 20px 0; border: 2px solid #fe2c55; border-radius: 8px; font-size: 16px; }
+        .btn { background-color: #fe2c55; color: white; padding: 15px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; font-size: 18px; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>تحميل فيديوهات تيك توك</h1>
+        <p>ضع الرابط وسنقوم بتجهيزه لك</p>
         <input type="text" id="urlInput" placeholder="ضع رابط الفيديو هنا...">
-        <button class="btn" onclick="process()">تحميل الآن</button>
+        <button class="btn" onclick="process()">بدء المعالجة</button>
     </div>
     <script>
         function process() {
