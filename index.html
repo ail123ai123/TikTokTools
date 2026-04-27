@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تيك توك تولز | TikTok Tools</title>
+    <style>
+        body { background-color: #010101; color: white; font-family: sans-serif; text-align: center; }
+        .hero { padding: 50px; background: linear-gradient(45deg, #fe2c55, #25f4ee); }
+        .tool-box { background: #121212; border-radius: 20px; padding: 30px; margin: 20px auto; max-width: 500px; border: 2px solid #25f4ee; }
+        input { width: 80%; padding: 12px; border-radius: 25px; border: none; margin-bottom: 15px; }
+        .btn { background: #fe2c55; color: white; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: bold; cursor: pointer; border: none; }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>منصة صناع محتوى تيك توك</h1>
+        <p>حمل، فلتر، واربح المشاهدات</p>
+    </div>
+    <div class="tool-box">
+        <h3>أدخل رابط الفيديو</h3>
+        <input type="text" id="videoLink" placeholder="ضع رابط الفيديو هنا...">
+        <br>
+        <button class="btn" onclick="goToWait(30)">فلترة وتحميل (30 ثانية)</button>
+        <button class="btn" onclick="goToWait(60)" style="background:#25f4ee; color:black; margin-top:10px;">فلترة وتحميل (60 ثانية)</button>
+    </div>
+    <script>
+        function goToWait(seconds) {
+            let link = document.getElementById('videoLink').value;
+            if(link != "") {
+                window.location.href = "download.html?time=" + seconds;
+            } else {
+                alert("يرجى وضع رابط الفيديو أولاً!");
+            }
+        }
+    </script>
+</body>
+</html>
